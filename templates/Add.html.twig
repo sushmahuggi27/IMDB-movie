@@ -1,0 +1,10 @@
+{{ include('include/headers.html.twig')}}
+{% form_theme form 'bootstrap_4_layout.html.twig' %}
+<body>
+<div class ="container">
+<h3>Add Full Movie Details</h3>
+    {{form_start(form)}}
+    {{form_widget(form)}}
+    {{form_end(form)}}
+</div>
+</body> 

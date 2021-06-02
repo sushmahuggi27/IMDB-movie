@@ -1,0 +1,38 @@
+{{ include('include/headers.html.twig')}}
+ <link href="{{ asset('') }}" rel="stylesheet" />
+    <div class ="container">
+    <h3>Directors List</h3>
+    <a href="{{absolute_url(asset(''))}}adddirector" class="btn btn-primary"> Add Director</a>
+    <a class="btn btn-secondary" href="{{absolute_url(asset(''))}}editmovies">GO BACK </a>
+    <table class="table table-striped table-hover ">
+            <link href="{{ asset('') }}" rel="stylesheet" />
+      <head>
+        <tr>
+          <th>DIRECTOR ID</th>
+          <th>NAME</th>
+          <th>EMAIL</th>
+          <th>COUNTRY</th>
+          <th>PROFILE</th>
+          <th>UPDATE</th>
+          <th>DELETE</th>
+        </tr>
+      </thead>
+      <tbody>
+      {%for director in director%}
+        <tr>
+          <td>{{director.id}}</td>
+          <td>{{director.name}}</td>
+          <td>{{director.email}}</td>
+          <td>{{director.country}}</td>
+          <td><img  src="{{absolute_url(asset(''))}}DirectorImage/{{director.profile}}" width="30%" height="30%"></td>  
+          <td> <a href="{{absolute_url(asset(''))}}updatedirector/{{director.id}}" class="btn btn-primary">UPDATE </a></td>
+          <td> <a href="{{absolute_url(asset(''))}}deletedirector/{{director.id}}" class="btn btn-primary">DELETE</a><td>
+              </tr>
+        {%else%}
+            <tr>
+                <td>NO RECORDS FOUND</td>
+            <tr>
+       {%endfor%}
+      </tbody>
+    </table>
+    </div>

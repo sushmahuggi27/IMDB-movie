@@ -1,0 +1,85 @@
+{{ include('include/headers.html.twig')}}
+<body>
+<div class ="container">
+  <h1 class="card-header"style ="text-align:center";> Movies</h3>
+   {%for movie in movies%}
+  <div class="card-body">
+  </div>
+    <h4 class="card-subtitle mb-2 text-muted" style ="font-size:30px;text-align:center;">Movie Name  :{{movie.title}}</h4>
+    <a href="{{absolute_url(asset(''))}}viewmediamov/{{movie.id}}"> 
+    <img  src="{{absolute_url(asset(''))}}Movie/images/{{movie.poster}}" alt="{{movie.id}}" width="648" height="400"></a>
+     <td><a class="btn btn-warning" href="{{absolute_url(asset(''))}}addreview/{{movie.id}}">ADD REVIEW </a></td>
+     <td><a class="btn btn-primary" href="{{absolute_url(asset(''))}}viewsreview/{{movie.id}}">VIEW USER REVIEW </a></td>
+     <h5>IMBD Rating</h5>
+    <li class="list-group-item">{{movie.imbdRating}}</li>
+     <h5>Category</h5>
+    {%for m in movie.getCategory()%}
+    <li class="list-group-item">{{m.name}}</li>
+ {%else%}
+       <ul class="list-group list-group-flush">
+       <li class="list-group-item">NO RECORDS FOUND</li>
+  </ul>
+   {%endfor%}
+   <h5>Director</h5>
+   {%for m in movie.getDirectors()%}
+    <li class="list-group-item"> <td><a href="{{absolute_url(asset(''))}}viewdirectorsmovie/{{m.id}}"> {{m.name}}</a></li>
+ {%else%}
+       <ul class="list-group list-group-flush">
+       <li class="list-group-item">NO RECORDS FOUND</li>
+  </ul>
+   {%endfor%}
+   <h5>ACTORS</h5>
+   {%for m in movie.getCrew()%}
+    <li class="list-group-item"> <td><a href="{{absolute_url(asset(''))}}viewcrewmovi/{{m.id}}"> {{m.name}}</a></li>
+ {%else%}
+       <ul class="list-group list-group-flush">
+       <li class="list-group-item">NO RECORDS FOUND</li>
+  </ul>
+   {%endfor%}
+   <h5>Production House</h5>
+     {%for m in movie.getProduction()%}
+    <li class="list-group-item"><a href="{{absolute_url(asset(''))}}viewproductionmov/{{m.id}}">{{m.productionName}}</a></li>
+ {%else%}
+       <ul class="list-group list-group-flush">
+       <li class="list-group-item">NO RECORDS FOUND</li>
+  </ul>
+   {%endfor%}
+  <div class="card-body">
+    <p class="card-text">Description:<br>{{movie.description}}</p>
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">Relase Year:{{movie.releaseDate}}</li>
+    <li class="list-group-item">Language:{{movie.language}}</li>
+  </ul>
+  {%else%}
+       <ul class="list-group list-group-flush">
+       <li class="list-group-item">NO RECORDS FOUND</li>
+  </ul>
+   {%endfor%}
+  <ul class="pagination pagination-lg">
+    {% if maxPages > 1 %}
+    <ul class="pagination pagination-lg">
+      {% if thisPage > 1 %}
+    <li class="page-item">
+      <a class="page-link" href="{{ path('show_movie_route', {currentPage: thisPage-1 < 1 ? 1 : thisPage-1}) }}">&laquo;</a>
+     
+    </li>
+     
+     {% endif %}
+     {% for i in 1..maxPages %}
+    <li class=" page-item active">
+      <a class="page-link  " href="{{ path('show_movie_route', {currentPage:i}) }}">{{i}}</a>
+      </li>
+      {% endfor %}
+      {%if thisPage < maxPages %}
+    <li class="page-item">
+      <a class="page-link" href="{{ path('show_movie_route',{currentPage: thisPage+1 <= maxPages ? thisPage+1 : thisPage})}}">&raquo;</a>
+    </li>
+    {% endif %} 
+  </ul>
+  {% endif %}
+</div>
+
+<div>
+</div>
+</body>

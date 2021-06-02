@@ -1,0 +1,12 @@
+{{ include('include/headers.html.twig')}}
+{% form_theme form 'bootstrap_4_layout.html.twig'%}
+<link href="{{ asset('') }}" rel="stylesheet" />
+<body class ="container">
+<div class="container-fluid">   
+    
+    <h3>Update Actors Details</h3>
+        {{form_start(form)}}
+        {{form_widget(form)}}
+        {{form_end(form)}}
+</div>
+</body>

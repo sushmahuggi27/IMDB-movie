@@ -1,0 +1,11 @@
+{{include('include/headers.html.twig')}}
+{% form_theme form 'bootstrap_4_layout.html.twig'%}
+<div class="container">
+<h1>Add Production </h1>
+    {{form_start(form)}}
+    {{form_widget(form)}}
+    {{form_end(form)}}
+
+    <a class="btn btn-secondary" href="{{absolute_url(asset(''))}}editmovies">GO BACK </a>
+
+</div>  

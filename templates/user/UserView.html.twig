@@ -1,0 +1,40 @@
+{{ include('include/userheader.html.twig')}}
+<body>
+<div class ="container">
+<div class="card mb-3">
+
+<h2 class="card-header"style ="text-align:center;"> Movies </h2>
+   <table class="table table-striped table-hover ">
+        <link href="{{ asset('') }}" rel="stylesheet" />
+      <head>
+        <tr>          
+          <th>Movie Title</th>
+          <th>Release year</th>
+          <th>Language</th>
+          <th>Type </th>
+          <th>Description</th>
+          <th>Poster</th>         
+          <th>View More</th>
+        </tr>
+      </thead>
+      <tbody>
+      {%for movies in movies%}
+        <tr>
+          <td>{{movies.title}}</td>
+          <td>{{movies.relDate}}</td>
+          <td>{{movies.language}}</td>
+          <td>{{movies.type}}</td>
+          <td>{{movies.description}}</td>
+          <td><img  src="{{absolute_url(asset(''))}}MoviesImage/{{movies.poster}}" width="30%" height="30%"></td> 
+          <td><a href="{{absolute_url(asset(''))}}viewmoreuser/{{movies.id}}" class="btn btn-primary">View More </a></td> 
+        </tr>
+        {%else%}
+            <tr>
+                <td>NO RECORDS FOUND</td>
+            <tr>
+       {%endfor%}
+       
+      </tbody>
+</div>
+</div>
+</body>

@@ -1,0 +1,191 @@
+{{ include('include/headers.html.twig')}}
+<body>
+<div class ="container">
+<div class="card mb-3">
+ <div class="card-link">
+    <a href="{{absolute_url(asset(''))}}addexisting" class="btn btn-warning"> Add Movies</a>
+   
+    <a href="{{absolute_url(asset(''))}}addactors" class="btn btn-primary"> Add Actors</a>
+    <a href="{{absolute_url(asset(''))}}editactors" class="btn btn-warning"> View Actors</a>
+      
+    <a href="{{absolute_url(asset(''))}}adddirector" class="btn btn-primary"> Add Director</a>
+    <a href="{{absolute_url(asset(''))}}editdirector" class="btn btn-warning"> View Director</a>
+
+    <a href="{{absolute_url(asset(''))}}addproduction" class="btn btn-primary"> Add Production</a>
+    <a href="{{absolute_url(asset(''))}}editproduction" class="btn btn-warning"> View Production </a>
+
+    <a href="{{absolute_url(asset(''))}}addmedia" class="btn btn-primary"> Add Media</a>
+    <a href="{{absolute_url(asset(''))}}editmedia" class="btn btn-warning"> View Media</a>
+  </div>
+  <h1 class="card-header"style ="text-align:center";>MOVIE DETAILS</h1>
+  <div>
+  <table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">Posters</th>
+      <th scope="col">Videos</th>
+    </tr>
+  </thead>
+</div>
+<div>
+  <tbody>
+    {%for movies in movies%}
+    <div>
+    {%for m in movies.getMedia()%}
+     <tr class="table-dark">
+      <td> <img  src="{{absolute_url(asset(''))}}MediaImage/{{m.image}}" alt="{{m.id}}" width="648" height="400"></td>
+      <td><iframe width="610" height="400" src="{{m.vedio}}" title="YouTube video player" frameborder="0" allow="accelerometer; 
+            autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></td>
+      {%else%}
+       <ul class="list-group list-group-flush">
+       <li class="list-group-item">NO RECORDS FOUND</li>
+       </ul>
+       {%endfor%}
+      </tr>
+    </div>
+  {%else%}
+       <ul class="list-group list-group-flush">
+       <li class="list-group-item">NO RECORDS FOUND</li>
+       </ul>
+  {%endfor%}
+  </tbody>
+  </table>
+</div>
+  <div>
+   {%for movies in movies%}
+  
+    <h4 class="card-subtitle mb-2 text-muted" style ="font-size:30px;text-align:center;">Movie Name  :{{movies.title}}</h4>
+
+  <div class="card-body">
+    <p class="card-text">Description:<br>{{movies.description}}</p>
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">Relase Year:{{movies.relDate}}</li>
+    <li class="list-group-item">Language:{{movies.language}}</li>
+    <li class="list-group-item">Type: {{movies.type}}</li>
+  </ul>
+    {%else%}
+       <ul class="list-group list-group-flush">
+       <li class="list-group-item">NO RECORDS FOUND</li>
+  </ul>
+   {%endfor%}
+  
+  </div>
+   <div>
+  <table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">Director Name</th>
+      <th scope="col">Email</th>
+      <th scope="col">Country</th>
+       <th scope="col">Profile</th>
+    </tr>
+  </thead>
+  </div>
+<div>
+  <tbody>
+    {%for movies in movies%}
+    <div>
+    {%for m in movies.getDirector()%}
+     <tr class="table-dark">
+      <td>{{m.name}}</td>
+      <td>{{m.email}}</td>
+      <td>{{m.country}}</td>
+      <td><img  src="{{absolute_url(asset(''))}}DirectorImage/{{m.profile}}" alt="{{m.id}}" width="100px" height="100px"></td>
+      {%else%}
+       <ul class="list-group list-group-flush">
+       <li class="list-group-item">NO RECORDS FOUND</li>
+       </ul>
+       {%endfor%}
+      </tr>
+    </div>
+  {%else%}
+       <ul class="list-group list-group-flush">
+       <li class="list-group-item">NO RECORDS FOUND</li>
+       </ul>
+  {%endfor%}
+  </tbody>
+  </table>
+</div>
+<div>
+  <table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">Actor Name</th>
+      <th scope="col">Gender</th>
+      <th scope="col">Email</th>
+      <th scope="col">Profile</th>     
+    </tr>
+  </thead>
+</div>
+<div>
+  <tbody>
+    {%for movies in movies%}
+    <div>
+    {%for m in movies.getActors()%}
+     <tr class="table-dark">
+      <td>{{m.name}}</td>
+      <td>{{m.gender}}</td>
+      <td>{{m.email}}</td>
+      <td><img  src="{{absolute_url(asset(''))}}ActorsImage/{{m.profile}}" alt="{{m.id}}" width="100px" height="100px"></td>
+      
+      {%else%}
+       <ul class="list-group list-group-flush">
+       <li class="list-group-item">NO RECORDS FOUND</li>
+       </ul>
+       {%endfor%}
+      </tr>
+    </div>
+  {%else%}
+       <ul class="list-group list-group-flush">
+       <li class="list-group-item">NO RECORDS FOUND</li>
+       </ul>
+  {%endfor%}
+  </tbody>
+  </table>
+</div>
+<div>
+  <table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">Production Company Name</th>
+      <th scope="col">Country</th>
+      <th scope="col">Description</th>
+    </tr>
+  </thead>
+</div>
+<div>
+  <tbody>
+    {%for movies in movies%}
+    <div>
+    {%for m in movies.getProduction()%}
+     <tr class="table-dark">
+      <td>{{m.name}}</td>
+      <td>{{m.country}}</td>
+      <td>{{m.description}}</td>
+      {%else%}
+       <ul class="list-group list-group-flush">
+       <li class="list-group-item">NO RECORDS FOUND</li>
+       </ul>
+       {%endfor%}
+      </tr>
+    </div>
+  {%else%}
+       <ul class="list-group list-group-flush">
+       <li class="list-group-item">NO RECORDS FOUND</li>
+       </ul>
+  {%endfor%}
+  </tbody>
+  </table>
+
+  {%for movies in movies%}
+    <td><a href="{{absolute_url(asset(''))}}viewreview/{{movies.id}}" class="btn btn-warning"> View Review </a><td>
+  {%else%}
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">NO RECORDS FOUND</li>
+    </ul>
+  {%endfor%} 
+</div>
+</div>
+</div>
+</body>

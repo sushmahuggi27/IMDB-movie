@@ -1,0 +1,10 @@
+{{ include('include/headers.html.twig')}}
+{% form_theme form 'bootstrap_4_layout.html.twig'%}
+<link href="{{ asset('') }}" rel="stylesheet" />
+<div class ="container">    
+    <h3>Update Directors Details</h3>
+        {{form_start(form)}}
+        {{form_widget(form)}}
+        {{form_end(form)}}
+        <img  src="{{absolute_url(asset(''))}}DirectorImage/{{director}}" width="5%" height="5%">
+</div>

@@ -1,0 +1,37 @@
+{{ include('include/headers.html.twig')}}
+{% block content %}
+
+<table style="width:100%">
+    {% for ad in all_ads %}
+        <tr><hr></tr>
+        <tr><h1> {{ m['title'] }}</h1></tr>
+        <tr><p><b>Posted by: </b> {{ m['name'] }}</p></tr>
+        .....
+
+</table>
+
+    {% if maxPages > 1 %}
+        <ul>
+            {%if thisPage > 1 %}
+                <li >
+                    <a href="{{ path('cpana_classifieds_public_ads_show_all', {currentPage: thisPage-1 < 1 ? 1 : thisPage-1}) }}">«</a>
+                </li>
+            {% endif %}
+      
+            {# Render each page number #}
+            {% for i in 1..maxPages %}
+                <li>
+                    <a href="{{ path('cpana_classifieds_public_ads_show_all', {currentPage: i}) }}">{{ i }}</a>
+                </li>
+            {% endfor %}
+
+            {# `»` arrow #}
+            {%if thisPage < maxPages %}
+                <li>
+                    <a href="{{ path('cpana_classifieds_public_ads_show_all', {currentPage: thisPage+1 <= maxPages ? thisPage+1 : thisPage}) }}">»</a>
+                </li>
+            {% endif %}
+        </ul>
+    {% endif %}
+
+{% endblock %}

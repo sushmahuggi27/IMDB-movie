@@ -1,0 +1,10 @@
+{{ include('include/header.html.twig')}}
+{% form_theme form 'bootstrap_4_layout.html.twig' %}
+<body>
+<div class ="container">
+<h3>ADMIN LOGIN</h3>
+    {{form_start(form)}}
+    {{form_widget(form)}}
+    {{form_end(form)}}
+</div>
+</body> 
